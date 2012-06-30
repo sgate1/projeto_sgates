@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+
+	<tx:annotation-driven transaction-manager="transactionManager" mode="aspectj" proxy-target-class="true" />
+
+	<context:property-placeholder location="classpath:database.properties" />
+	
+	<bean id="pooledDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		<property name="driverClass" value="${database.driverClass}" />
+		<property name="jdbcUrl" value="${database.jdbcUrl}" />
+		<property name="user" value="${database.user}" />
+		<property name="password" value="${database.password}" />
+		<property name="initialPoolSize"  value="${database.initialPoolSize}" />
+		<property name="minPoolSize" value="${database.minPoolSize}" />
+		<property name="maxPoolSize" value="${database.maxPoolSize}" />
+		<property name="checkoutTimeout" value="${database.checkoutTimeout}" />
+		<property name="idleConnectionTestPeriod" value="${database.idleConnectionTestPeriod}" />
+		<property name="acquireIncrement" value="${database.acquireIncrement}" />
+		<property name="maxStatements" value="${database.maxStatements}" />
+		<property name="numHelperThreads" value="${database.numHelperThreads}" />
+	</bean>
+
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="persistenceUnitName" value="${database.persistenceUnitName}" />
+		<property name="dataSource" ref="pooledDataSource" />
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+				<property name="databasePlatform" value="${database.platform}" />
+				<property name="showSql" value="${database.showSql}" />
+				<property name="generateDdl" value="${database.generateDdl}" />
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="validatorFactory" class="javax.validation.Validation"
+        factory-method="buildDefaultValidatorFactory" />
+
+    <bean id="validator" factory-bean="validatorFactory"
+        factory-method="getValidator" />
+	
+	<!-- Exception translation bean post processor -->
+	<bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+	
+</beans>
