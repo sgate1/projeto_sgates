@@ -13,6 +13,7 @@
     <aspectj.version>1.6.5.RELEASE</aspectj.version>
     <org.springframework.version>3.0.5.RELEASE</org.springframework.version>
     <org.slf4j.version>1.5.10</org.slf4j.version>
+    <junit.version>4.7.0</junit.version>
   </properties>
   
   <repositories>
@@ -381,6 +382,18 @@
 	      <groupId>org.codehaus.jackson</groupId>
 	      <artifactId>jackson-mapper-asl</artifactId>
 	      <version>1.5.2</version>
+    </dependency>
+    
+    <!-- 
+    **************************************************** 
+    Testes unitarios
+    **************************************************** 
+    -->
+    
+    <dependency>
+      <groupId>org.junit</groupId>
+      <artifactId>com.springsource.org.junit</artifactId>
+      <version>${junit.version}</version>
     </dependency>
     
   </dependencies>
