@@ -12,4 +12,7 @@
 	<!-- Configures Spring JPA and Transaction -->
 	<import resource="infrastructure-config.xml" />
 
+	<!-- Configures Spring MVC -->
+	<import resource="mvc-config.xml" />
+
 </beans>

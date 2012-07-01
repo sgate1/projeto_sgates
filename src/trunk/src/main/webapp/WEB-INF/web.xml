@@ -1,39 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<web-app id="WebApp_ID" version="2.4"
+	xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
 
-	<display-name>Sgate Web</display-name>
-	 
+	<display-name>Sgate</display-name>
+
 	<welcome-file-list>
-        <welcome-file>index.jsp</welcome-file>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
-	
-	<!-- Carrega uma instância do ApplicationContext no ServletContext quando o mesmo é criado. -->
-	<context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>
-			/WEB-INF/config/app-config.xml
-		</param-value>
-	</context-param>
-	
-	<!-- Filtro utilizado para manter a sessão com o banco aberta na controller -->
-    <filter>
-        <filter-name>oemInViewFilter</filter-name>
-        <filter-class>
-            org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter
-        </filter-class>
-        <init-param>
-            <param-name>entityManagerFactoryBeanName</param-name>
-            <param-value>entityManagerFactory</param-value>
-        </init-param>
-    </filter>
-    
-    <filter-mapping>
-        <filter-name>oemInViewFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
-	 
+
 	<!-- Reads request input using UTF-8 encoding -->
 	<filter>
 		<filter-name>characterEncodingFilter</filter-name>
@@ -53,7 +29,7 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	
-	<!-- Filtro para abilitar todos os 4 tipos de requisições HTTP -->
+	<!-- Filtro para habilitar todos os 4 tipos de requisicoes HTTP -->
 	<filter>
 	    <filter-name>httpMethodFilter</filter-name>
 	    <filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
@@ -64,61 +40,99 @@
 	    <servlet-name>Spring MVC Dispatcher Servlet</servlet-name>
 	</filter-mapping>
 	
+	<!-- Carrega uma instancia do ApplicationContext no ServletContext quando o mesmo eh criado. -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+			/WEB-INF/config/app-config.xml
+		</param-value>
+	</context-param>
+
 	<listener>
 	  <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 	
+	<!-- Filtro para permitir que o spring abra um entity manager na view -->
+	<filter>  
+       <filter-name>OpenEntityManagerInViewFilter</filter-name>  
+       <filter-class>  
+          org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter  
+       </filter-class>  
+    </filter>  
+
+    <filter-mapping>  
+       <filter-name>OpenEntityManagerInViewFilter</filter-name>  
+       <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+	<!-- Define the basename for a resource bundle for I18N -->
+	<context-param>
+		<param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
+		<param-value>bundles/message</param-value>
+	</context-param>
+	
+	<!-- Fallback locale if no bundles found for browser's preferred locale -->
+	<!-- Force a single locale using param-name 'javax.servlet.jsp.jstl.fmt.locale' -->
+	<context-param>
+		<param-name>javax.servlet.jsp.jstl.fmt.fallbackLocale</param-name>
+		<param-value>pt-BR</param-value>
+	</context-param>
+
 	<!-- Handles all requests into the application -->
 	<servlet>
 		<servlet-name>Spring MVC Dispatcher Servlet</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>
-				/WEB-INF/config/mvc-config.xml
-			</param-value>
+			<param-value>/WEB-INF/config/app-config.xml</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
-
+	
+	
 	<servlet-mapping>
 		<servlet-name>Spring MVC Dispatcher Servlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.css</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.png</url-pattern>
+	</servlet-mapping>
 	
-    <servlet-mapping> 
-            <servlet-name>default</servlet-name> 
-            <url-pattern>*.css</url-pattern> 
-    </servlet-mapping>
-     
-    <servlet-mapping> 
-            <servlet-name>default</servlet-name> 
-            <url-pattern>*.png</url-pattern> 
-    </servlet-mapping>
-    
-    <servlet-mapping> 
-            <servlet-name>default</servlet-name> 
-            <url-pattern>*.jpg</url-pattern> 
-    </servlet-mapping>
-     
-    <servlet-mapping> 
-            <servlet-name>default</servlet-name> 
-            <url-pattern>*.js</url-pattern> 
-    </servlet-mapping>
-    
-    <servlet-mapping> 
-            <servlet-name>default</servlet-name> 
-            <url-pattern>*.swf</url-pattern> 
-    </servlet-mapping>
-    
-    <servlet-mapping> 
-            <servlet-name>default</servlet-name> 
-            <url-pattern>*.html</url-pattern> 
-    </servlet-mapping>
-    
-    <servlet-mapping> 
-            <servlet-name>default</servlet-name> 
-            <url-pattern>*.gif</url-pattern> 
-    </servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.ico</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.jpg</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.gif</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.js</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.swf</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.html</url-pattern>
+	</servlet-mapping>
 
 </web-app>

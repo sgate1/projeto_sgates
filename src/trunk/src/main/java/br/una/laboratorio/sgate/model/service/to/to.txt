@@ -1,0 +1,1 @@
+Neste pacote devem estar contidas todas as classes de implementação de objetos de transferencia utilizados pelo serviço do modelo da aplicação.

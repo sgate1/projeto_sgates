@@ -1,0 +1,1 @@
+Neste pacote devem estar contidas todas as classes de implementação de regras de negócio do modelo da aplicação.
