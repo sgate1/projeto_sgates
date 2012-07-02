@@ -1,0 +1,1 @@
+Neste pacote devem estar contidos todos os enums que representam tipos na representação do modelo.

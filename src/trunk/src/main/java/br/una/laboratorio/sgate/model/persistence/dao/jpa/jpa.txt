@@ -1,0 +1,1 @@
+Neste pacote devem estar contidas todas as classes de implementação JPA de acesso a dados do modelo da aplicação.
