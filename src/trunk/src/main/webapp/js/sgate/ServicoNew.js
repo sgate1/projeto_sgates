@@ -73,7 +73,7 @@
   
   var createFieldFormulario = function( idField, labelField ){
     var field = $( '<div/>', {
-      'class': 'control-group',
+      'class': 'control-group'
     });
     
     var label = $( '<label/>', {
@@ -90,7 +90,7 @@
         'class': 'input-xlarge focused',
         id: idField,
         type: 'text',
-        html: 'Digite algo...'
+        value: 'Digite algo...'
       })
     });
     input.appendTo( field );
