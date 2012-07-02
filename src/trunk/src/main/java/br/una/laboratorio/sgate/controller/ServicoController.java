@@ -24,7 +24,7 @@ public class ServicoController extends ApplicationController {
 	@Inject
 	private ServicoBO bo;
 
-	@RequestMapping( value = "/servico", method = RequestMethod.POST )
+	@RequestMapping( value = "/servico", method = RequestMethod.PUT )
 	public ReturnTO save( HttpServletRequest request ) {
 		Servico servico = ContentBody.entity(request, Servico.class);
 		return new ObjectAndMessageReturnTO<Servico>( bo.save( servico ) );

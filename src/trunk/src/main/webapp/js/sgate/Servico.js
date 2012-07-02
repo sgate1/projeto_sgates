@@ -31,7 +31,7 @@
     var instanceOfServico = this;
     $.ajax({
       url: url_salvar,
-      type: "POST",
+      type: "PUT",
       data: $.toJSON(instanceOfServico),
       contentType: "application/json; charset=utf-8",
       dataType: "json",
@@ -42,7 +42,7 @@
         
       },
       error: function(error){
-        alert( "Erro!" );
+        new Alert().error(error);
       }
     });
     
@@ -64,7 +64,7 @@
         
       },
       error: function(error){
-        alert( "Erro!" );
+        new Alert().error(error);
       }
     });
     
