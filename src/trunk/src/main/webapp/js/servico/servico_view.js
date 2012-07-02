@@ -1,61 +1,57 @@
-;( function(window) {
+;(function(window) {
 
-	var ServicoView;
-	
-	// construtor
-	ServicoView = window.ServicoView = function() {
-		
-	}
-	
-	ServicoView.fn = ServicoView.prototype;
-	
-	
-	
-	// funcoes publicas
-	ServicoView.fn.listView = function() {
-	
-		$("#content").html("");   // limpa conteudo
+  var ServicoView;
 
-		$("#listarServicosTemplate").tmpl().appendTo( "#content" );
+  // construtor
+  ServicoView = window.ServicoView = function() {
 
-		inserirNovoServico();
-	}
-	
-	
-	// funcoes privadas
-	var inserirNovoServico = function() {
-	
-		$('#btn_inserir_servico').click( function() {
-		
-			$("#content").html("");   // limpa conteudo
-		
-			// desenha o menu principal atraves do template 'menuTemplate'
-			$("#inserirServicoTemplate").tmpl().appendTo( "#content" );
-			
-			// $('.obrigatorio').required(); TODO
-			
-			salvarServico();
-		
-		} );
-	}
-	
-	function salvarServico() {
-		
-		$('#form_inserir_servico').submit( function(e) {
+  }
 
-			e.preventDefault();
+  ServicoView.fn = ServicoView.prototype;
 
-			var servico = new Servico();
-			
-			$(this).find('input,select,textarea').each( function() {
-			
-				servico.set( $(this).attr('id'), $(this).val() );
-			} );
-			
-			servico.salvar();
-		} );
+  // funcoes publicas
+  ServicoView.fn.listView = function() {
 
-	}
-	
+    $("#content").html(""); // limpa conteudo
 
-} )(window);
+    $("#listarServicosTemplate").tmpl().appendTo("#content");
+
+    inserirNovoServico();
+  }
+
+  // funcoes privadas
+  var inserirNovoServico = function() {
+
+    $('#btn_inserir_servico').click(function() {
+
+      $("#content").html(""); // limpa conteudo
+
+      // desenha o menu principal atraves do template 'menuTemplate'
+      $("#inserirServicoTemplate").tmpl().appendTo("#content");
+
+      // $('.obrigatorio').required(); TODO
+
+      salvarServico();
+
+    });
+  }
+
+  var salvarServico = function() {
+
+    $('#form_inserir_servico').submit(function(e) {
+
+      e.preventDefault();
+
+      var servico = new Servico();
+
+      $(this).find('input,select,textarea').each(function() {
+
+        servico.set($(this).attr('id'), $(this).val());
+      });
+
+      servico.salvar();
+    });
+
+  }
+
+})(window);

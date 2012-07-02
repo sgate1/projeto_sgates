@@ -6,7 +6,7 @@ jQuery(document).ready(function() {
   $('#menu_servicos').click(function() {
 
     var servicoView = new ServicoView();
-    servicoView.listView();
+    servicoView.show( "#content" );
 
   });
 

@@ -1,60 +1,67 @@
 <html>
 
-	<head>
-		<meta charset="iso-8859-1">
-	</head>
+  <head>
+    <meta charset="iso-8859-1">
+  </head>
 
-	<body>
+<body>
 
-		<h1>Sgate Web</h1>
+  <h1>Sgate Web</h1>
 
-		<table>
-		
-			<tr>
+  <table>
 
-				<!--- MENU ---->
-				<td>
-					
-					<table>
-					
-						<ul>
-							<li><a href='#' id='menu_servicos'>Serviços</a></li>
-							<li><a href='#' id='menu_planos'>Planos</a></li>
-							<li><a href='#' id='menu_clientes'>Clientes</a></li>
-							<li><a href='#' id='menu_vendas'>Vendas</a></li>
-							<li><a href='#' id='menu_instaladores'>Instaladores</a></li>
-						</ul>
-					
-					</table>
-					
-				</td>
+    <tr>
 
-				
-				<!---- CONTENT ---->
-				<td>
-					
-					<div id='content'></div>
-					
-				</td>
+      <!--- MENU ---->
+      <td>
 
-			</tr>
+        <table>
+
+          <ul>
+            <li><a href='#' id='menu_servicos'>Serviços</a></li>
+            <li><a href='#' id='menu_planos'>Planos</a></li>
+            <li><a href='#' id='menu_clientes'>Clientes</a></li>
+            <li><a href='#' id='menu_vendas'>Vendas</a></li>
+            <li><a href='#' id='menu_instaladores'>Instaladores</a></li>
+          </ul>
+
+        </table>
+
+      </td>
 
 
-		</table>
+      <!---- CONTENT ---->
+      <td>
 
-	</body>
-	
+        <div id='content'></div>
+
+      </td>
+
+    </tr>
+
+
+  </table>
+
+</body>
+
 </html>
 
 <!-- Scripts -->
 
-<script type='text/javascript' charset="utf-8" src='js/lib/jquery-1.7.2.js'></script>
-<script type='text/javascript' charset="utf-8" src='js/lib/jquery.json-2.3.min.js'></script>
-<script type='text/javascript' charset="utf-8" src='js/lib/jquery.tmpl.min.js'></script>
+<script type='text/javascript' charset="utf-8"
+  src='js/lib/jquery-1.7.2.js'></script>
+<script type='text/javascript' charset="utf-8"
+  src='js/lib/jquery.json-2.3.min.js'></script>
+<script type='text/javascript' charset="utf-8"
+  src='js/lib/jquery.tmpl.min.js'></script>
 
 <script type='text/javascript' charset="utf-8" src='js/app.js'></script>
-<script type='text/javascript' charset="utf-8" src='js/servico/servico.js'></script>
-<script type='text/javascript' charset="utf-8" src='js/servico/servico_view.js'></script>
+<script type='text/javascript' charset="utf-8"
+  src='js/servico/servico.js'></script>
+<script type='text/javascript' charset="utf-8"
+  src='js/servico/servico_view.js'></script>
+  <script type='text/javascript' charset="utf-8"
+  src='js/servico/tableServicos.js'></script>
 
 
 
@@ -65,85 +72,85 @@
 <!-- grid de listagem -->
 <script id="listarServicosTemplate" type="text/x-jquery-tmpl">
 
-	<input type='button' id='btn_inserir_servico' value='Inserir Novo Serviço'>
+  <input type='button' id='btn_inserir_servico' value='Inserir Novo Serviço'>
 
-	</br>
+  </br>
 
-	<h2>
-		Serviços Cadastrados
-	</h2>
+  <h2>
+    Serviços Cadastrados
+  </h2>
 
-	<table>
+  <table>
 
-		<tr>
-			<td>Título</td>
-			<td>Descrição</td>
-			<td>Preço</td>
-			<td>Ações</td>
-		</tr>
-		
-		<tr>
-			<td>Banda Larga 1MB</td>
-			<td>Descrição</td>
-			<td>R$ 100,00</td>
-			<td>
-				<input type='button' value='Editar'>
-				<input type='button' value='Excluir'>
-			</td>
-		</tr>
-		
-		<tr>
-			<td>Banda Larga 2MB</td>
-			<td>Descrição</td>
-			<td>R$ 200,00</td>
-			<td>
-				<input type='button' value='Editar'>
-				<input type='button' value='Excluir'>
-			</td>
-		</tr>
+    <tr>
+      <td>Título</td>
+      <td>Descrição</td>
+      <td>Preço</td>
+      <td>Ações</td>
+    </tr>
+    
+    <tr>
+      <td>Banda Larga 1MB</td>
+      <td>Descrição</td>
+      <td>R$ 100,00</td>
+      <td>
+        <input type='button' value='Editar'>
+        <input type='button' value='Excluir'>
+      </td>
+    </tr>
+    
+    <tr>
+      <td>Banda Larga 2MB</td>
+      <td>Descrição</td>
+      <td>R$ 200,00</td>
+      <td>
+        <input type='button' value='Editar'>
+        <input type='button' value='Excluir'>
+      </td>
+    </tr>
 
-	</table>
+  </table>
 
 </script>
 
 <!-- tela de inserir -->
 <script id="inserirServicoTemplate" type="text/x-jquery-tmpl">
 
-	<h2>
-		Inserir Novo Serviço
-	</h2>
-	
-	<form id='form_inserir_servico'>
-	
-		<table>
-		
-			<input type='hidden' id='id'>
-		
-			<tr>
-				<td>Título: *</td>
-				<td>
-					<input type='text' id='titulo'>
-				</td>
-			</tr>
-			
-			<tr>
-				<td>Descrição:</td>
-				<td>
-					<textarea id='descricao'></textarea>
-				</td>
-			</tr>
-			
-			<tr>
-				<td>Preço: *</td>
-				<td>
-					R$ <input type='text' id='preco'>
-				</td>
-			</tr>
-			
-		</table>
-		
-		<input type='submit' value='Salvar'>
+  <h2>
+    Inserir Novo Serviço
+  </h2>
+  
+  <form id='form_inserir_servico'>
+  
+    <table>
+    
+      <input type='hidden' id='id'>
+    
+      <tr>
+        <td>Título: *</td>
+        <td>
+          <input type='text' id='titulo'>
+        </td>
+      </tr>
+      
+      <tr>
+        <td>Descrição:</td>
+        <td>
+          <textarea id='descricao'></textarea>
+        </td>
+      </tr>
+      
+      <tr>
+        <td>Preço: *</td>
+        <td>
+          R$ <input type='text' id='preco'>
+        </td>
+      </tr>
+      
+    </table>
+    
+    <input type='submit' value='Salvar'>
 
-	</form>
+  </form>
 
 </script>
