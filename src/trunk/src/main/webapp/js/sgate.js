@@ -1,5 +1,5 @@
 //ROOT = 'http://localhost:8080/Sgate';
-ROOT = 'http://200.131.95.52:8080/Sgate';
+ROOT = 'http://localhost:8080/Sgate';
 
 jQuery(document).ready(function() {
 

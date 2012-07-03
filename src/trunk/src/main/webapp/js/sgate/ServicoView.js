@@ -29,7 +29,7 @@
       id: id_btn_inserir_servico,
       html: $( '<i/>', { 'class': 'icon-file icon-white' }),
       click: function(){
-        new ServicoNew().show( "#content" );
+        new ServicoNew( "#content" ).show();
       }
     })
     botao_salvar.appendTo( view );

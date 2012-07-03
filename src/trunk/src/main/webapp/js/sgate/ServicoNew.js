@@ -3,13 +3,25 @@
   var ServicoNew;
 
   // construtor
-  ServicoNew = window.ServicoNew = function() {
-
+  ServicoNew = window.ServicoNew = function( target_container ) {
+    this.container = target_container;
+    
+    var formulario = this.formulario = new ServicoForm( 'Salvar', function(){
+      var servico = formulario.getServico();
+      servico.salvar( function(data){
+        new Alert().show(data);
+        var servicoView = new ServicoView();
+        servicoView.show( target_container );
+      });
+    });
+    
   };
 
   ServicoNew.fn = ServicoNew.prototype;
 
-  ServicoNew.fn.show = function( target_container ) {
+  ServicoNew.fn.show = function() {
+    var target_container = this.container;
+    
     $(target_container).html(""); // limpa conteudo
     
     var view = $('<div/>');
@@ -22,80 +34,10 @@
     var quebra_de_linha = $( '<br/>' );
     quebra_de_linha.appendTo( view );
     
-    var formulario = createFormulario();
+    var formulario = this.formulario.create();
     formulario.appendTo( view );
     
     view.appendTo( target_container );
-  };
-  
-  var getServico = function( formulario ) {
-    var servico = new Servico();
-
-    $(formulario).find('input,select,textarea').each(function( index, field ) {
-      servico.set( $(field).attr('id'), $(field).val() );
-    });
-    
-    return servico;
-  };
-  
-  var createFormulario = function(){
-    var formulario = $('<form/>', {
-      'class': 'form-horizontal' 
-    });
-    
-    var fieldset = $('<fieldset/>');
-    fieldset.appendTo( formulario );
-    
-    createFieldFormulario( 'titulo', 'Título' ).appendTo( fieldset );
-    createFieldFormulario( 'descricao', 'Descrição' ).appendTo( fieldset );
-    createFieldFormulario( 'preco', 'Preço' ).appendTo( fieldset );
-    
-    var container_botao = $( '<div/>', {
-      'class': 'form-actions',
-      html: $('<button/>', {
-        type: 'submit',
-        'class': 'btn btn-primary',
-        html: 'Salvar',
-        click: function(){
-          var servico = getServico( formulario );
-          servico.salvar( function(data){
-            new Alert().show(data);
-            var servicoView = new ServicoView();
-            servicoView.show( "#content" );
-          });
-        }
-      })
-    });
-    container_botao.appendTo( fieldset );
-    
-    return formulario;
-  };
-  
-  var createFieldFormulario = function( idField, labelField ){
-    var field = $( '<div/>', {
-      'class': 'control-group'
-    });
-    
-    var label = $( '<label/>', {
-      'class': 'control-label',
-      'for': idField,
-      html: labelField
-    });
-    label.appendTo( field );
-    
-    var input = $( '<div/>', {
-      'class': 'controls',
-      'for': idField,
-      html: $('<input/>', {
-        'class': 'input-xlarge focused',
-        id: idField,
-        type: 'text',
-        value: 'Digite algo...'
-      })
-    });
-    input.appendTo( field );
-    
-    return field;
   };
   
 })(window);
