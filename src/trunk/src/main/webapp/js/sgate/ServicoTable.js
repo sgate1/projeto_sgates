@@ -43,8 +43,8 @@
         var servico = new Servico( obj );
         servico.remove( function(data){
           new Alert().show(data);
-          var servicoView = new ServicoView();
-          servicoView.show( "#content" );
+          var servicoView = new ServicoView( "#content" );
+          servicoView.show();
         });
       }
     });

@@ -3,15 +3,15 @@
   var ServicoView;
 
   // construtor
-  ServicoView = window.ServicoView = function() {
-
+  ServicoView = window.ServicoView = function( target_container ) {
+    this.target = target_container;
   };
 
   ServicoView.fn = ServicoView.prototype;
 
   // funcoes publicas
-  ServicoView.fn.show = function( target_container ) {
-
+  ServicoView.fn.show = function() {
+    var target_container = this.target;
     $(target_container).html(""); // limpa conteudo
     
     var id_btn_inserir_servico = 'btn_inserir_servico';

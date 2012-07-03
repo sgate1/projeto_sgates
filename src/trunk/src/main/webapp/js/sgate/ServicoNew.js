@@ -10,8 +10,8 @@
       var servico = formulario.getServico();
       servico.salvar( function(data){
         new Alert().show(data);
-        var servicoView = new ServicoView();
-        servicoView.show( target_container );
+        var servicoView = new ServicoView( target_container );
+        servicoView.show();
       });
     });
     
