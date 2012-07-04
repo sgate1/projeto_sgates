@@ -29,6 +29,12 @@ public class ServicoController extends ApplicationController {
 		Servico servico = ContentBody.entity(request, Servico.class);
 		return new ObjectAndMessageReturnTO<Servico>( bo.save( servico ) );
 	}
+	
+	@RequestMapping( value = "/servico", method = RequestMethod.POST )
+	public ReturnTO update( HttpServletRequest request ) {
+		Servico servico = ContentBody.entity(request, Servico.class);
+		return new ObjectAndMessageReturnTO<Servico>( bo.update( servico ) );
+	}
 
 	@RequestMapping( value = "/servico/{id}", method = RequestMethod.GET )
 	public ReturnTO retrieve( @PathVariable Long id ) {

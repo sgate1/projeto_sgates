@@ -30,37 +30,41 @@ public class Servico implements Serializable {
 	public Servico( Long id ){
 		this.id = id;
 	}
+	
+	public Long getId() {
+		return id;
+	}
 
 	public String getTitulo() {
 		return titulo;
 	}
 
-	public void setTitulo(String titulo) {
+	public Servico setTitulo(String titulo) {
 		this.titulo = titulo;
+		return this;
 	}
 
 	public String getDescricao() {
 		return descricao;
 	}
 
-	public void setDescricao(String descricao) {
+	public Servico setDescricao(String descricao) {
 		this.descricao = descricao;
+		return this;
 	}
 
 	public BigDecimal getPreco() {
 		return preco.setScale(2, RoundingMode.HALF_DOWN);
 	}
 
-	public void setPreco(BigDecimal preco) {
+	public Servico setPreco(BigDecimal preco) {
 		this.preco = preco;
+		return this;
 	}
 	
-	public void setPreco(Double preco) {
+	public Servico setPreco(Double preco) {
 		this.preco = new BigDecimal(preco);
+		return this;
 	}
 
-	public Long getId() {
-		return id;
-	}
-	
 }

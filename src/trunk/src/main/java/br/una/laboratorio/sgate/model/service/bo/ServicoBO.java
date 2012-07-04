@@ -23,6 +23,14 @@ public class ServicoBO {
 	public Servico save( Servico servico ) {
 		return dao.createOrUpdate(servico);
 	}
+	
+	@Transactional
+	public Servico update( Servico servico ) {
+		return dao.retrieve( servico.getId() )
+		.setTitulo( servico.getTitulo() )
+		.setDescricao( servico.getDescricao() )
+		.setPreco( servico.getPreco() );
+	}
 
 	@Transactional(readOnly = true)
 	public Servico retrieve(Long id) {
@@ -34,9 +42,10 @@ public class ServicoBO {
 		return dao.retrieve();
 	}
 	
-	@Transactional(readOnly = true)
+	@Transactional
 	public void delete( Servico servico ) {
-		dao.delete(servico);
+		Servico retrievedEntity = dao.retrieve( servico.getId() ); 
+		dao.delete( retrievedEntity );
 	}
 	
 }

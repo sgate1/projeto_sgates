@@ -16,14 +16,14 @@
     };  
     
     this.table = new Table( parameters );
-  }
+  };
   
   Actions.Edit.create = function( obj ){
     var action = $('<button/>', { 
       'class': "btn btn-success",
       'style': 'margin-left: 5px',
       click: function(){
-        
+        new ServicoUpdate( "#content", obj ).show();
       }
     });
     

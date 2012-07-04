@@ -1,5 +1,9 @@
 ;(function(window) {
-
+  var fields = [ {id:"titulo", label:"Título"},
+                 {id:"descricao", label:"Descrição"},
+                 {id:"preco", label:"Preço" }
+               ];
+                  
   var ServicoForm;
 
   // construtor
@@ -10,7 +14,8 @@
 
   ServicoForm.fn = ServicoForm.prototype;
 
-  ServicoForm.fn.create = function() {
+  ServicoForm.fn.create = function( servico ) {
+    servico = this.servico = servico!=null ? servico : {};
     this.formulario = $('<form/>', {
       'class': 'form-horizontal' 
     });
@@ -18,9 +23,9 @@
     var fieldset = $('<fieldset/>');
     fieldset.appendTo( this.formulario );
     
-    createFieldFormulario( 'titulo', 'Título' ).appendTo( fieldset );
-    createFieldFormulario( 'descricao', 'Descrição' ).appendTo( fieldset );
-    createFieldFormulario( 'preco', 'Preço' ).appendTo( fieldset );
+    $.each( fields, function(index, field) {
+      createFieldFormulario( field.id, field.label, servico[field.id] ).appendTo( fieldset );
+    });
     
     var labelBotao = this.label;
     var functionBotao = this.action;
@@ -40,7 +45,7 @@
   
   ServicoForm.fn.getServico = function() {
     var formulario = this.formulario;
-    var servico = new Servico();
+    var servico = new Servico( this.servico );
 
     $(formulario).find('input,select,textarea').each(function( index, field ) {
       servico.set( $(field).attr('id'), $(field).val() );
@@ -49,7 +54,7 @@
     return servico;
   };
   
-  var createFieldFormulario = function( idField, labelField ){
+  var createFieldFormulario = function( idField, labelField, valueField ){
     var field = $( '<div/>', {
       'class': 'control-group'
     });
@@ -68,7 +73,7 @@
         'class': 'input-xlarge focused',
         id: idField,
         type: 'text',
-        value: 'Digite algo...'
+        value: valueField!=null ? valueField : 'Digite algo...'
       })
     });
     input.appendTo( field );
