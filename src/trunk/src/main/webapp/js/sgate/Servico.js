@@ -1,10 +1,6 @@
 ;(function( window ){
-  
-  var url_salvar = ROOT + "/servico.json"; 
-  var url_delete = ROOT + "/servico.json"; 
-  var url_editar = ROOT + "/servico.json"; 
   var Servico;
-
+  
   // construtor
   Servico = window.Servico = function( obj ){
     this.id = obj==null ? null : obj.id;
@@ -12,7 +8,9 @@
     this.descricao = obj==null ? null : obj.descricao;
     this.preco = obj==null ? null : obj.preco;
   }
-
+  
+  Servico.URL_SALVAR = Servico.URL_DELETAR = Servico.URL_EDITAR = Servico.URL_RECUPERAR_TUDO = ROOT + "/servico.json"; 
+  
   Servico.fn = Servico.prototype;
 
   // funcoes
@@ -30,7 +28,7 @@
     
     var instanceOfServico = this;
     $.ajax({
-      url: url_salvar,
+      url: Servico.URL_SALVAR,
       type: "PUT",
       data: $.toJSON(instanceOfServico),
       contentType: "application/json; charset=utf-8",
@@ -52,7 +50,7 @@
     
     var instanceOfServico = this;
     $.ajax({
-      url: url_editar,
+      url: Servico.URL_EDITAR,
       type: "POST",
       data: $.toJSON(instanceOfServico),
       contentType: "application/json; charset=utf-8",
@@ -74,7 +72,7 @@
     
     var instanceOfServico = this;
     $.ajax({
-      url: url_delete,
+      url: Servico.URL_DELETAR,
       type: "DELETE",
       data: $.toJSON(instanceOfServico),
       contentType: "application/json; charset=utf-8",

@@ -17,7 +17,7 @@
     var id_btn_inserir_servico = 'btn_inserir_servico';
     var id_do_container_da_view = 'servicoTableContainer'; 
     createView( id_btn_inserir_servico, id_do_container_da_view ).appendTo( target_container );
-    new ServicoTable( ROOT + '/servico.json', id_do_container_da_view );
+    new ServicoTable( Servico.URL_RECUPERAR_TUDO, id_do_container_da_view );
     
   };
   
