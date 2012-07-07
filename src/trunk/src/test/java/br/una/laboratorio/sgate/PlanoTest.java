@@ -1,5 +1,6 @@
 package br.una.laboratorio.sgate;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertFalse;
 import java.util.ArrayList;
@@ -25,6 +26,8 @@ public class PlanoTest {
 	@Inject
 	public PlanoBO bo;
 	
+	private static Long id;
+	
 	@Test
 	public void inserindoUmPlanoNoBanco(){
 		Plano plano = new Plano();
@@ -37,8 +40,22 @@ public class PlanoTest {
 		plano.setServicos(servicos);
 	
 		bo.save(plano);
-		assertNotNull("Objeto não salvo! id nulo",plano.getId());
+		id = plano.getId();
+		assertNotNull("Objeto não salvo! id nulo", id);
 		
+	}
+	
+	@Test
+	public void testeAlterarPlano() {
+		
+		String novaDescricao = "Teste de plano2";
+		
+		Plano plano = bo.retrieve(id);
+		plano.setDescricao(novaDescricao);
+		bo.update(plano);
+		
+		plano = bo.retrieve(id);
+		assertEquals("Plano não foi alterado", novaDescricao, plano.getDescricao());
 	}
 	
 	@Test
