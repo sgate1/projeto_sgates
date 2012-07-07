@@ -28,11 +28,27 @@ public class PlanoBO {
 	public List<Plano> retrieve() {
 		return dao.retrieve();
 	}	
+
+	@Transactional(readOnly = true)
+	public Plano retrieve(Long id) {
+		return dao.retrieve(id);
+	}
 	
+	@Transactional
+	public Plano update(Plano plano) {
+		
+		Plano planoAtual = this.retrieve(plano.getId());
+		
+		planoAtual.setDescricao(plano.getDescricao());
+		planoAtual.setDesconto(plano.getDesconto());
+		planoAtual.setServicos(plano.getServicos());
+		
+		return planoAtual;
+	}
+
 	@Transactional
 	public void delete( Plano plano ) {
 		Plano retrievedEntity = dao.retrieve( plano.getId() ); 
 		dao.delete( retrievedEntity );
 	}
-	
 }
