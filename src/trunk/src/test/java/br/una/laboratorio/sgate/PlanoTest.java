@@ -1,12 +1,14 @@
 package br.una.laboratorio.sgate;
 
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -22,8 +24,8 @@ import br.una.laboratorio.sgate.model.service.bo.PlanoBO;
 @ContextConfiguration(locations = { "/infrastructure-config.xml" })
 public class PlanoTest {
 
-	@Inject
-	public PlanoBO bo;
+	@Inject public PlanoBO bo;
+	private static Long id;	
 	
 	@Test
 	public void inserindoUmPlanoNoBanco(){
@@ -37,7 +39,8 @@ public class PlanoTest {
 		plano.setServicos(servicos);
 	
 		bo.save(plano);
-		assertNotNull("Objeto não salvo! id nulo",plano.getId());
+		id = plano.getId();
+		assertNotNull("Objeto não salvo! id nulo",id);
 		
 	}
 	
@@ -48,5 +51,15 @@ public class PlanoTest {
 		assertFalse("A lista não deveria estar vazia", CollectionUtils.isEmpty(planos));
 	}
 	
-	
+
+	@Test
+	@Ignore
+	public void deletandoOPlanoInseridoNoTeste(){
+//		Plano plano = bo.retrieve(id);
+//		assertNotNull( "Entidade não existe", plano );
+//		
+//		bo.delete( plano );
+//		plano = bo.retrieve(id);
+//		assertNull("Entidade serviço não foi deletada", plano);
+	}	
 }

@@ -19,13 +19,34 @@
     this.table = new Table( parameters );
   };
   
+  Actions.View.createModal = function( obj ){
+    var modal = $('#modalVisualizacaoEntidades');
+    var body = modal.find('.modal-body');
+    body.html('');
+    
+    $('<h2/>', {
+      'html': obj.descricao
+    }).appendTo(body);
+    
+    $('<h3/>', {
+      'html': 'Desconto de R$ ' + obj.desconto
+    }).appendTo(body);
+    
+    $('<h2/>', {
+      'html': 'Preço: R$ ' + obj.preco
+    }).appendTo(body);
+    
+  };
+  
   Actions.View.create = function( obj ){
+    
     var action = $('<button/>', { 
       'class': "btn btn-primary",
       'style': 'margin-left: 5px',
+      'data-toggle' : 'modal',
+      'href' : '#modalVisualizacaoEntidades',
       click: function(){
-        new Alert().alert('Ainda não implementado!');
-        //new ServicoUpdate( "#content", obj ).show();
+        Actions.View.createModal( obj ); 
       }
     });
     
