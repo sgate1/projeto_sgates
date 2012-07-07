@@ -22,7 +22,9 @@ import br.una.laboratorio.sgate.model.service.bo.ServicoBO;
 @ContextConfiguration(locations = { "/infrastructure-config.xml" })
 public class ServicoTest {
 	
-	@Inject public ServicoBO bo;
+	@Inject
+	public ServicoBO bo;
+	
 	private static Long id;
 
 	@Test
