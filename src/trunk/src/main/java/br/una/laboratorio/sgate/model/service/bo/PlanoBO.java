@@ -45,4 +45,10 @@ public class PlanoBO {
 		
 		return planoAtual;
 	}
+
+	@Transactional
+	public void delete( Plano plano ) {
+		Plano retrievedEntity = dao.retrieve( plano.getId() ); 
+		dao.delete( retrievedEntity );
+	}
 }

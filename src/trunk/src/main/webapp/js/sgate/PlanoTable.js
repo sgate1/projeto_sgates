@@ -60,13 +60,11 @@
       'class': "btn btn-danger",
       'style': 'margin-left: 5px',
       click: function(){
-        new Alert().alert('Ainda não implementado!');
-//        var servico = new Servico( obj );
-//        servico.remove( function(data){
-//          new Alert().show(data);
-//          var servicoView = new ServicoView( "#content" );
-//          servicoView.show();
-//        });
+        var plano = new Plano( obj );
+        plano.remove( function(data){
+          new Alert().show(data);
+          new PlanoView( "#content" ).show();
+        });
       }
     });
     
