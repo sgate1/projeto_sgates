@@ -1,5 +1,7 @@
 package br.una.laboratorio.sgate.controller;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
@@ -25,5 +27,11 @@ public class PlanoController {
 		Plano plano = ContentBody.entity(request, Plano.class);
 		return new ObjectAndMessageReturnTO<Plano>( bo.save( plano ) );
 	}
+	
+	@RequestMapping(value = "/plano", method = RequestMethod.GET)
+	public ReturnTO findAll() {
+		return new ObjectAndMessageReturnTO<List<Plano>>( bo.retrieve() );
+	}
+	
 
 }

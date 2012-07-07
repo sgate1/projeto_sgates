@@ -1,7 +1,7 @@
 package br.una.laboratorio.sgate;
 
 import static org.junit.Assert.assertNotNull;
-
+import static org.junit.Assert.assertFalse;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +11,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.util.CollectionUtils;
 
 import br.una.laboratorio.sgate.model.domain.entity.Plano;
 import br.una.laboratorio.sgate.model.domain.entity.Servico;
@@ -25,7 +26,7 @@ public class PlanoTest {
 	public PlanoBO bo;
 	
 	@Test
-	public void testeInserirPlano(){
+	public void inserindoUmPlanoNoBanco(){
 		Plano plano = new Plano();
 		
 		plano.setDesconto(20l);
@@ -38,6 +39,13 @@ public class PlanoTest {
 		bo.save(plano);
 		assertNotNull("Objeto não salvo! id nulo",plano.getId());
 		
+	}
+	
+	@Test
+	public void buscandoTodosOsPlanosDoBanco(){
+		List<Plano> planos = bo.retrieve();
+		assertNotNull("Deveria retornar uma lista de planos", planos);
+		assertFalse("A lista não deveria estar vazia", CollectionUtils.isEmpty(planos));
 	}
 	
 	

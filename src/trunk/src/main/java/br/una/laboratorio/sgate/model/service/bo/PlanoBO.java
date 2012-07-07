@@ -1,5 +1,7 @@
 package br.una.laboratorio.sgate.model.service.bo;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -21,5 +23,10 @@ public class PlanoBO {
 	public Plano save( Plano plano ) {
 		return dao.createOrUpdate(plano);
 	}
+	
+	@Transactional(readOnly = true)
+	public List<Plano> retrieve() {
+		return dao.retrieve();
+	}	
 	
 }
