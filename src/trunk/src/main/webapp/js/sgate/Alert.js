@@ -7,7 +7,7 @@
   }
 
   Alert.fn = Alert.prototype;
-
+  
   Alert.fn.info = function( text, target ){
     target = target==null ? this.target : target;
     $(target).html(""); // limpa conteudo

@@ -7,6 +7,7 @@
   var Actions = { Edit:{ label:"Editar" }, Remove:{ label:"Excluir" } };
   var ServicoTable;
   
+  //construtor
   ServicoTable = window.ServicoTable = function( url_da_listagem_dos_items, id_target_container ) {
     var parameters = {
         'headers': headers,
