@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import br.ufla.lemaf.commons.model.service.to.MessageReturnTO;
 import br.ufla.lemaf.commons.model.service.to.ObjectAndMessageReturnTO;
 import br.ufla.lemaf.commons.model.service.to.ReturnTO;
 import br.una.laboratorio.sgate.model.domain.entity.Plano;
@@ -33,5 +34,11 @@ public class PlanoController {
 		return new ObjectAndMessageReturnTO<List<Plano>>( bo.retrieve() );
 	}
 	
-
+	@RequestMapping(value = "/plano", method = RequestMethod.DELETE)
+	public ReturnTO delete( HttpServletRequest request ) {
+		Plano plano = ContentBody.entity(request, Plano.class);
+		bo.delete(plano);
+		return new MessageReturnTO();
+	}
+	
 }
